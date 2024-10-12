@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>My books</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let b of books">
+      <ion-label>
+        <h1>{{b.title}}</h1>
+        <p>{{b.author}}</p>
+        <ion-button color="danger" (click)="deleteBook(b.id)">ELIMINAR</ion-button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="gotoHome()">Main Page</ion-button>
+  <ion-button expand="block" (click)="gotoBooksForm()">Add books</ion-button>
+</ion-content>
