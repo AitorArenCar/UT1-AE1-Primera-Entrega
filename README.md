@@ -24,7 +24,7 @@ Sigue estos pasos para tener el entorno de desarrollo funcionando:
 1. **Clona el repositorio:**
 
    ```bash
-   git clone https://github.com/tuusuario/tu-proyecto-crud.git
+   git clone https://github.com/AitorArenCar/UT1-AE1-Primera-Entrega
    cd tu-proyecto-crud
    ```
 
