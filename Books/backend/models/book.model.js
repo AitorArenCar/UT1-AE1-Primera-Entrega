@@ -5,6 +5,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         author: {
             type: Sequelize.STRING
+        },
+        description: {
+            type: Sequelize.STRING
         }
     });
 

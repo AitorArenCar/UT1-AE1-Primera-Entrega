@@ -22,6 +22,7 @@ export class BookService {
     const body = new URLSearchParams();
     body.append("title", book.title);
     body.append("author", book.author);
+    body.append("description", book.description);
 
     return this.httpClient.post(this.endpoint, body.toString(), {headers});
   }

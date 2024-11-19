@@ -1,18 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      HOME
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>MENU</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content>
+    <ion-button expand="block" (click)="gotoMyBooks()">Show books</ion-button>
+    <ion-button expand="block" (click)="gotoBooksForm()">Add books</ion-button>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content"> 
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        HOME
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+</div>
 
-  <ion-button expand="block" (click)="gotoMyBooks()">Show books</ion-button>
-  <ion-button expand="block" (click)="gotoBooksForm()">Add books</ion-button>
-</ion-content>

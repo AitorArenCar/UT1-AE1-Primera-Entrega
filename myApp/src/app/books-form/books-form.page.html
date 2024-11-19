@@ -22,7 +22,12 @@
       El author es obligatorio!
     </ion-note>
 
-    <ion-button expand="full" type="submit" [disabled]="!bookForm.valid">Crear</ion-button>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input formControlName="description" type="text"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="!bookForm.valid">ADD</ion-button>
   </form>
   <ion-button expand="block" (click)="gotoMyBooks()">Show books</ion-button>
   <ion-button expand="block" (click)="gotoHome()">Main page</ion-button>

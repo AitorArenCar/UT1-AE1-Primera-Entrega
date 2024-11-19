@@ -17,7 +17,8 @@ export class BooksFormPage implements OnInit {
     private route: Router) {
     this.bookForm = this.formBuilder.group({
       title:['', Validators.compose([Validators.required])],
-      author: ['', Validators.compose([Validators.required])]
+      author: ['', Validators.compose([Validators.required])],
+      description: ['', Validators.compose([Validators.required])]
     })
   }
 

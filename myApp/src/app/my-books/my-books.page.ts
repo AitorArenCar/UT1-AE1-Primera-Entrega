@@ -36,5 +36,4 @@ export class MyBooksPage implements OnInit {
   gotoBooksForm(){
     this.router.navigateByUrl("/books-form")
   }
-
 }

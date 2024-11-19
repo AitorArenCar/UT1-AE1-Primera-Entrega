@@ -12,7 +12,8 @@ exports.create = (req, res) => {
     
     const book = {
         title: req.body.title,
-        author: req.body.author
+        author: req.body.author,
+        description: req.body.description
     };
 
     Book.create(book)
