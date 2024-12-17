@@ -14,17 +14,15 @@ export class BookService {
     return this.httpClient.get(this.endpoint);
   }
 
-  create(book:any){
-    const headers = new HttpHeaders({
-      'Content-type': 'application/x-www-form-urlencoded'
-    });
+  create(book:any, blob: any){
+    let formData = new FormData();
 
-    const body = new URLSearchParams();
-    body.append("title", book.title);
-    body.append("author", book.author);
-    body.append("description", book.description);
+    formData.append("title", book.title);
+    formData.append("author", book.author);
+    formData.append("description", book.description);
+    formData.append('file', blob);
 
-    return this.httpClient.post(this.endpoint, body.toString(), {headers});
+    return this.httpClient.post(this.endpoint, formData);
   }
 
 

@@ -1,7 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 
+var path = require('path');
+
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 var corsOptions = {
     origin: "http://localhost:8100"
@@ -22,6 +26,15 @@ db.sequelize.sync({ fore: true }).then(() => {
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to books application." });
 });
+
+const basicAuthRoutes = require("./routes/basicAuthRoutes");
+app.use("/api/basic-auth", basicAuthRoutes);
+
+const tokenRoutes = require("./routes/tokenRoutes");
+app.use("/api/token-auth", tokenRoutes);
+
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/users", userRoutes);
 
 require("./routes/book.routes")(app);
 

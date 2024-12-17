@@ -5,8 +5,12 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-button expand="block" (click)="gotoMyBooks()">Show books</ion-button>
-    <ion-button expand="block" (click)="gotoBooksForm()">Add books</ion-button>
+    <ion-menu-toggle>
+      <ion-button expand="block" (click)="gotoMyBooks()">Show books</ion-button>
+    </ion-menu-toggle>
+    <ion-menu-toggle>
+      <ion-button expand="block" (click)="gotoBooksForm()">Add books</ion-button>
+    </ion-menu-toggle>
   </ion-content>
 </ion-menu>
 <div class="ion-page" id="main-content"> 

@@ -8,17 +8,17 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  title: string = "BH";
-  author: string = "star";
+  title: string = "";
+  author: string = "";
 
   constructor(private router: Router) {}
 
   gotoMyBooks(){
-    this.router.navigateByUrl("/my-books")
+    this.router.navigateByUrl("/my-books");
   }
 
   gotoBooksForm(){
-    this.router.navigateByUrl("/books-form")
+    this.router.navigateByUrl("/books-form");
   }
 
 }

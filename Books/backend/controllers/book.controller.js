@@ -1,6 +1,10 @@
+const fs = require("fs");
+const path = require("path");
+
 const db = require("../models");
 const Book = db.books;
 const Op = db.Sequelize.Op;
+
 
 exports.create = (req, res) => {
     if (!req.body.title){
@@ -13,7 +17,8 @@ exports.create = (req, res) => {
     const book = {
         title: req.body.title,
         author: req.body.author,
-        description: req.body.description
+        description: req.body.description,
+        filename: req.file ? req.file.filename : ""
     };
 
     Book.create(book)
@@ -87,22 +92,48 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
     const id = req.params.id;
-
-    Book.destroy({
-        where: {id: id}
-    })
-        .then(num => {
-            if (num == 1){
-                res.send({
-                    message: "Book was deleted succesfully!"
+    // Busca el libro para verificar si tiene un archivo asociado
+    Book.findByPk(id)
+        .then(book => {
+            if (!book) {
+                return res.status(404).send({
+                    message: `Cannot find book with id=${id}.`
                 });
-            }else{
+            }
+
+            // Si el libro tiene un archivo asociado, elimina el archivo
+            if (book.filename) {
+                const filePath = path.join(__dirname, "../public/images", book.filename);
+                console.log("Intentando eliminar archivo:", filePath);
+                fs.unlink(filePath, (err) => {
+                    if (err) {
+                        console.error("Error al eliminar el archivo:", err);
+                        return res.status(500).send({
+                            message: "Error al eliminar el archivo."
+                        });
+                    }
+                    console.log("Archivo eliminado:", filePath);
+                });
+            }
+
+            // Después de manejar el archivo, elimina el registro de la base de datos
+            return Book.destroy({
+                where: { id: id }
+            });
+        })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Book was deleted successfully!"
+                });
+            } else {
                 res.send({
                     message: `Cannot delete book with id=${id}.`
                 });
             }
         })
-        .catch(err =>{
+        .catch(err => {
+            console.error("Error en la eliminación del libro:", err);
             res.status(500).send({
                 message: "Cannot delete book with id=" + id
             });

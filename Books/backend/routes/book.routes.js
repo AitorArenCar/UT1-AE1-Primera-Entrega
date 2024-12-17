@@ -1,9 +1,10 @@
 module.exports = app => {
     const books = require("../controllers/book.controller.js");
+    var upload = require('../multer/upload');
 
     var router = require("express").Router();
 
-    router.post("/", books.create);
+    router.post("/", upload.single('file'), books.create);
 
     router.get("/", books.findAll);
 

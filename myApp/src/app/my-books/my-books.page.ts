@@ -17,6 +17,10 @@ export class MyBooksPage implements OnInit {
     this.getAllBooks();
   }
 
+  ionViewWillEnter() {
+    this.getAllBooks();
+  }
+
   getAllBooks(){
     this.bookService.getBooks().subscribe(response => {
       this.books = response;
